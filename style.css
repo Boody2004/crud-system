@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --main-color: #10cab7;
+  --secondary-color: #e8e8e8;
+  --third-color: #f05454;
+  --text-color: #f6f6f6;
+  --secondary-text-color: black;
+  --section-background: #2c4755;
+  --radius: 5px;
+  --main-duration: 0.5s;
+}
+body {
+  font-family: sans-serif;
+  color: var(--text-color);
+  background-color: var(--section-background);
+}
+section {
+  width: 80%;
+  margin: auto;
+}
+
+header {
+  padding: 2rem 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+header h1 {
+  font-size: 2rem;
+}
+header p {
+  font-size: 1.5rem;
+}
+header h1,
+header p {
+  margin: 0.7rem 0;
+}
+
+/* input */
+input {
+  width: 98.5%;
+  height: 40px;
+  margin: 10px 0;
+  padding: 5px 10px;
+  border-radius: var(--radius);
+  outline: none;
+  border: none;
+  color: white;
+  background-color: rgb(24, 23, 23);
+  transition: var(--main-duration);
+}
+input:focus {
+  transform: scale(1.1);
+  /* height: 50px; */
+  background-color: var(--secondary-text-color);
+}
+
+.inputs {
+  padding: 1rem 0;
+}
+.price input {
+  width: 20%;
+}
+.price #total {
+  padding: 10px 5px;
+  border-radius: var(--radius);
+  background-color: var(--main-color);
+}
+.price #total::before {
+  content: "Total: ";
+}
+
+/* button */
+button {
+  width: 100%;
+  height: 50px;
+  margin: 1.5rem 0;
+  font-size: 1.3rem;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: var(--main-duration);
+  color: white;
+  background-color: var(--main-color);
+}
+button:hover {
+  background-color: #0ea596;
+}
+
+.outputs {
+  padding: 1rem 0;
+}
+.outputs .btn-search {
+  display: flex;
+  justify-content: space-between;
+}
+.outputs .btn-search button {
+  width: 45%;
+}
+.outputs table {
+  width: 100%;
+  margin: 1rem 0;
+  text-align: center;
+}
+.outputs table th {
+  text-transform: uppercase;
+}
+.outputs table th,
+.outputs table td {
+  padding: 5px;
+}
+.outputs table tbody tr button {
+  margin: 0;
+}
+.outputs table tbody tr .update {
+  color: var(--secondary-text-color);
+  background-color: var(--secondary-color);
+}
+.outputs table tbody tr .delete {
+  background-color: var(--third-color);
+}
+.outputs table tbody tr .update:hover {
+  background-color: #c2c1c1;
+}
+.outputs table tbody tr .delete:hover {
+  background-color: #d64646;
+}
