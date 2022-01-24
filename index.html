@@ -18,12 +18,32 @@
         <input type="text" id="title" placeholder="Title" />
 
         <div class="price">
-          <input type="number" id="price" placeholder="Price" />
-          <input type="number" id="taxes" placeholder="Paxes" />
-          <input type="number" id="ads" placeholder="Ads" />
-          <input type="number" id="discount" placeholder="Discount" />
+          <input
+            onkeyup="getTotal()"
+            type="number"
+            id="price"
+            placeholder="Price"
+          />
+          <input
+            onkeyup="getTotal()"
+            type="number"
+            id="taxes"
+            placeholder="Taxes"
+          />
+          <input
+            onkeyup="getTotal()"
+            type="number"
+            id="ads"
+            placeholder="Ads"
+          />
+          <input
+            onkeyup="getTotal()"
+            type="number"
+            id="discount"
+            placeholder="Discount"
+          />
 
-          <small id="total">123123</small>
+          <small id="total">0</small>
         </div>
 
         <input type="number" id="count" placeholder="Count" />
