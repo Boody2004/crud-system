@@ -45,6 +45,7 @@ input {
   height: 50px;
   margin: 10px 0;
   padding: 5px 10px;
+  font-size: 1rem;
   border-radius: var(--radius);
   outline: none;
   border: none;
@@ -61,17 +62,22 @@ input:focus {
 .inputs {
   padding: 1rem 0;
 }
-.price input {
+.inputs .price input {
   width: 20%;
 }
-.price #total {
+.inputs .price #price,
+.inputs .price #taxes,
+.inputs .price #ads,
+.inputs .price #discount {
+  margin-right: 15px;
+}
+.inputs .price #total {
   font-size: 1rem;
-  margin-left: 4%;
   padding: 10px;
   border-radius: var(--radius);
   background-color: var(--main-color);
 }
-.price #total::before {
+.inputs .price #total::before {
   content: "Total: ";
 }
 

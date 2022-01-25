@@ -20,3 +20,26 @@ function getTotal() {
     total.style.background = "var(--main-color)";
   }
 }
+
+// create product
+let dataProduct;
+if (localStorage.product != null) {
+  dataProduct = JSON.parse(localStorage.product);
+} else {
+  dataProduct = [];
+}
+
+submit.onclick = function () {
+  let newProduct = {
+    title: title.value,
+    price: price.value,
+    taxes: taxes.value,
+    ads: ads.value,
+    discount: discount.value,
+    total: total.innerHTML,
+    count: count.value,
+    category: category.value,
+  };
+  dataProduct.push(newProduct);
+  localStorage.setItem("product", JSON.stringify(dataProduct));
+};
