@@ -42,4 +42,17 @@ submit.onclick = function () {
   };
   dataProduct.push(newProduct);
   localStorage.setItem("product", JSON.stringify(dataProduct));
+  clearInput();
 };
+
+// clear input
+function clearInput() {
+  title.value = "";
+  price.value = "";
+  taxes.value = "";
+  ads.value = "";
+  discount.value = "";
+  total.innerHTML = "";
+  count.value = "";
+  category.value = "";
+}
