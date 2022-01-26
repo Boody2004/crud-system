@@ -16,7 +16,7 @@ function getTotal() {
     total.innerHTML = result;
     total.style.background = "var(--third-color)";
   } else {
-    total.innerHTML = "0";
+    total.innerHTML = "";
     total.style.background = "var(--main-color)";
   }
 }
@@ -43,6 +43,7 @@ submit.onclick = function () {
   dataProduct.push(newProduct);
   localStorage.setItem("product", JSON.stringify(dataProduct));
   clearInput();
+  showData();
 };
 
 // clear input
@@ -56,3 +57,26 @@ function clearInput() {
   count.value = "";
   category.value = "";
 }
+
+// get read data
+function showData() {
+  let table = "";
+  for (let i = 0; i < dataProduct.length; i++) {
+    table += `
+      <tr>
+        <td>${i}</td>
+        <td>${dataProduct[i].title}</td>
+        <td>${dataProduct[i].price}</td>
+        <td>${dataProduct[i].taxes}</td>
+        <td>${dataProduct[i].ads}</td>
+        <td>${dataProduct[i].discount}</td>
+        <td>${dataProduct[i].total}</td>
+        <td>${dataProduct[i].category}</td>
+        <td><button class="update" id="update">update</button></td>
+        <td><button class="delete" id="delete">delete</button></td>
+      </tr>
+      `;
+  }
+  document.getElementById("tbody").innerHTML = table;
+}
+showData();
