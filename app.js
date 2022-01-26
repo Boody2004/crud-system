@@ -8,6 +8,7 @@ let total = document.getElementById("total");
 let count = document.getElementById("count");
 let category = document.getElementById("category");
 let submit = document.getElementById("submit");
+let clear = document.getElementById("clear");
 
 // get total
 function getTotal() {
@@ -47,6 +48,10 @@ submit.onclick = function () {
 };
 
 // clear input
+clear.onclick = function () {
+  clearInput();
+};
+
 function clearInput() {
   title.value = "";
   price.value = "";
