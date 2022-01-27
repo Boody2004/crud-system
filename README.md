@@ -7,4 +7,4 @@
 
 ---
 
-![Design preview for the Profile card component coding challenge](https://res.cloudinary.com/dirbnpgsp/image/upload/v1642982292/curd_wbdi3x.png)
+![Design preview for the Profile card component coding challenge](https://res.cloudinary.com/dirbnpgsp/image/upload/v1643320083/screencapture-127-0-0-1-5500-index-html-2022-01-27-23_47_19_bcpqmt.png)
