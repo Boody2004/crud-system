@@ -61,6 +61,10 @@ submit.onclick = function () {
 
 // clear input
 clear.onclick = function () {
+  clearInput();
+};
+
+function clearInput() {
   title.style.border = "none";
   price.style.border = "none";
   count.style.border = "none";
@@ -74,7 +78,7 @@ clear.onclick = function () {
   total.innerHTML = "";
   count.value = "";
   category.value = "";
-};
+}
 
 // get read data
 function showData() {
