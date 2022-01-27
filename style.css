@@ -80,6 +80,13 @@ input:focus {
 .inputs .price #total::before {
   content: "Total: ";
 }
+.btn {
+  display: grid;
+  grid-template-columns: 80% 19%;
+}
+.btn #clear {
+  margin-left: 15px;
+}
 
 /* button */
 button {
@@ -96,14 +103,6 @@ button {
 }
 button:hover {
   background-color: #0ea596;
-}
-
-.btn {
-  display: grid;
-  grid-template-columns: 80% 19%;
-}
-.btn #clear {
-  margin-left: 15px;
 }
 
 .outputs {
