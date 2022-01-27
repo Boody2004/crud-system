@@ -31,7 +31,17 @@ if (localStorage.product != null) {
 }
 
 submit.onclick = function () {
-  if (title.value != "") {
+  if (title && price && count && category.value == "") {
+    title.style.border = "2px solid red";
+    price.style.border = "2px solid red";
+    count.style.border = "2px solid red";
+    category.style.border = "2px solid red";
+  } else {
+    title.style.border = "none";
+    price.style.border = "none";
+    count.style.border = "none";
+    category.style.border = "none";
+
     let newProduct = {
       title: title.value,
       price: price.value,
@@ -51,10 +61,11 @@ submit.onclick = function () {
 
 // clear input
 clear.onclick = function () {
-  clearInput();
-};
+  title.style.border = "none";
+  price.style.border = "none";
+  count.style.border = "none";
+  category.style.border = "none";
 
-function clearInput() {
   title.value = "";
   price.value = "";
   taxes.value = "";
@@ -63,7 +74,7 @@ function clearInput() {
   total.innerHTML = "";
   count.value = "";
   category.value = "";
-}
+};
 
 // get read data
 function showData() {
