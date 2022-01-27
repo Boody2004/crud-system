@@ -69,7 +69,7 @@ function showData() {
   for (let i = 0; i < dataProduct.length; i++) {
     table += `
       <tr>
-        <td>${i}</td>
+        <td>${i + 1}</td>
         <td>${dataProduct[i].title}</td>
         <td>${dataProduct[i].price}</td>
         <td>${dataProduct[i].taxes}</td>
@@ -78,10 +78,19 @@ function showData() {
         <td>${dataProduct[i].total}</td>
         <td>${dataProduct[i].category}</td>
         <td><button class="update" id="update">update</button></td>
-        <td><button class="delete" id="delete">delete</button></td>
+        <td><button onclick="deleteData(${i})" class="delete" id="delete">delete</button></td>
       </tr>
       `;
   }
   document.getElementById("tbody").innerHTML = table;
 }
 showData();
+
+// delete data
+function deleteData(i) {
+  if (confirm("Are you sure you want to delete this?")) {
+    dataProduct.splice(i, 1);
+    localStorage.product = JSON.stringify(dataProduct);
+    showData();
+  }
+}
