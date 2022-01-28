@@ -9,6 +9,7 @@ let count = document.getElementById("count");
 let category = document.getElementById("category");
 let submit = document.getElementById("submit");
 let clear = document.getElementById("clear");
+let btnDeleteAll = document.getElementById("delete-all");
 
 // get total
 function getTotal() {
@@ -32,10 +33,10 @@ if (localStorage.product != null) {
 
 submit.onclick = function () {
   if (title && price && count && category.value == "") {
-    title.style.border = "2px solid red";
-    price.style.border = "2px solid red";
-    count.style.border = "2px solid red";
-    category.style.border = "2px solid red";
+    title.style.border = "1px solid var(--third-color)";
+    price.style.border = "1px solid var(--third-color)";
+    count.style.border = "1px solid var(--third-color)";
+    category.style.border = "1px solid var(--third-color)";
   } else {
     title.style.border = "none";
     price.style.border = "none";
@@ -94,16 +95,30 @@ function showData() {
         <td>${dataProduct[i].discount}</td>
         <td>${dataProduct[i].total}</td>
         <td>${dataProduct[i].category}</td>
-        <td><button class="update" id="update">update</button></td>
-        <td><button onclick="deleteData(${i})" class="delete" id="delete">delete</button></td>
+        <td><button class="update" id="update">Update</button></td>
+        <td><button onclick="deleteData(${i})" class="delete" id="delete">Delete</button></td>
       </tr>
       `;
   }
   document.getElementById("tbody").innerHTML = table;
+
+  if (dataProduct.length > 0) {
+    btnDeleteAll.innerHTML = `
+    <button onclick="deleteAll()">Delete All</button>
+  `;
+  } else {
+    btnDeleteAll.innerHTML = "";
+  }
 }
 showData();
 
 // delete data
+function deleteAll() {
+  localStorage.clear();
+  dataProduct.splice(0);
+  showData();
+}
+
 function deleteData(i) {
   if (confirm("Are you sure you want to delete this?")) {
     dataProduct.splice(i, 1);
