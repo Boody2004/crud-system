@@ -35,13 +35,15 @@ if (localStorage.product != null) {
 }
 
 submit.onclick = function () {
-  if (title && price && category.value == "") {
+  if (title && price && count && category.value == "") {
     title.style.border = "1px solid var(--third-color)";
     price.style.border = "1px solid var(--third-color)";
+    count.style.border = "1px solid var(--third-color)";
     category.style.border = "1px solid var(--third-color)";
   } else {
     title.style.border = "none";
     price.style.border = "none";
+    count.style.border = "none";
     category.style.border = "none";
 
     let newProduct = {
@@ -56,13 +58,7 @@ submit.onclick = function () {
     };
 
     if (mood === "create") {
-      if (newProduct.count > 1) {
-        for (let i = 0; i < newProduct.count; i++) {
-          dataProduct.push(newProduct);
-        }
-      } else {
-        dataProduct.push(newProduct);
-      }
+      dataProduct.push(newProduct);
     } else {
       dataProduct[tmp] = newProduct;
 
@@ -85,6 +81,7 @@ clear.onclick = function () {
 function clearInput() {
   title.style.border = "none";
   price.style.border = "none";
+  count.style.border = "none";
   category.style.border = "none";
 
   title.value = "";
@@ -112,6 +109,7 @@ function showData() {
         <td>${dataProduct[i].ads}</td>
         <td>${dataProduct[i].discount}</td>
         <td>${dataProduct[i].total}</td>
+        <td>${dataProduct[i].count}</td>
         <td>${dataProduct[i].category}</td>
         <td><button onclick="updateData(${i})" class="update" id="update">Update</button></td>
         <td><button onclick="deleteData(${i})" class="delete" id="delete">Delete</button></td>
@@ -138,7 +136,7 @@ function updateData(i) {
   ads.value = dataProduct[i].ads;
   discount.value = dataProduct[i].discount;
   getTotal();
-  count.style.display = "none";
+  count.value = dataProduct[i].count;
   category.value = dataProduct[i].category;
   submit.innerHTML = "Update";
 
