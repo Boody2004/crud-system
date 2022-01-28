@@ -11,6 +11,9 @@ let submit = document.getElementById("submit");
 let clear = document.getElementById("clear");
 let btnDeleteAll = document.getElementById("delete-all");
 
+let mood = "create";
+let tmp;
+
 // get total
 function getTotal() {
   if (price.value != "") {
@@ -52,12 +55,20 @@ submit.onclick = function () {
       category: category.value,
     };
 
-    if (newProduct.count > 1) {
-      for (let i = 0; i < newProduct.count; i++) {
+    if (mood === "create") {
+      if (newProduct.count > 1) {
+        for (let i = 0; i < newProduct.count; i++) {
+          dataProduct.push(newProduct);
+        }
+      } else {
         dataProduct.push(newProduct);
       }
     } else {
-      dataProduct.push(newProduct);
+      dataProduct[tmp] = newProduct;
+
+      mood = "create";
+      count.style.display = "block";
+      submit.innerHTML = "Create";
     }
 
     localStorage.setItem("product", JSON.stringify(dataProduct));
@@ -88,6 +99,8 @@ function clearInput() {
 
 // get read data
 function showData() {
+  getTotal();
+
   let table = "";
   for (let i = 0; i < dataProduct.length; i++) {
     table += `
@@ -100,7 +113,7 @@ function showData() {
         <td>${dataProduct[i].discount}</td>
         <td>${dataProduct[i].total}</td>
         <td>${dataProduct[i].category}</td>
-        <td><button class="update" id="update">Update</button></td>
+        <td><button onclick="updateData(${i})" class="update" id="update">Update</button></td>
         <td><button onclick="deleteData(${i})" class="delete" id="delete">Delete</button></td>
       </tr>
       `;
@@ -117,9 +130,30 @@ function showData() {
 }
 showData();
 
+// update data
+function updateData(i) {
+  title.value = dataProduct[i].title;
+  price.value = dataProduct[i].price;
+  taxes.value = dataProduct[i].taxes;
+  ads.value = dataProduct[i].ads;
+  discount.value = dataProduct[i].discount;
+  getTotal();
+  count.style.display = "none";
+  category.value = dataProduct[i].category;
+  submit.innerHTML = "Update";
+
+  mood = "update";
+  tmp = i;
+
+  scroll({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
 // delete data
 function deleteAll() {
-  if (confirm("Are you sure you want to delete this?")) {
+  if (confirm("Are you sure you want to delete all data?")) {
     localStorage.clear();
     dataProduct.splice(0);
     showData();
