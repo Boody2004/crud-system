@@ -119,9 +119,11 @@ showData();
 
 // delete data
 function deleteAll() {
-  localStorage.clear();
-  dataProduct.splice(0);
-  showData();
+  if (confirm("Are you sure you want to delete this?")) {
+    localStorage.clear();
+    dataProduct.splice(0);
+    showData();
+  }
 }
 
 function deleteData(i) {
