@@ -32,15 +32,13 @@ if (localStorage.product != null) {
 }
 
 submit.onclick = function () {
-  if (title && price && count && category.value == "") {
+  if (title && price && category.value == "") {
     title.style.border = "1px solid var(--third-color)";
     price.style.border = "1px solid var(--third-color)";
-    count.style.border = "1px solid var(--third-color)";
     category.style.border = "1px solid var(--third-color)";
   } else {
     title.style.border = "none";
     price.style.border = "none";
-    count.style.border = "none";
     category.style.border = "none";
 
     let newProduct = {
@@ -53,7 +51,15 @@ submit.onclick = function () {
       count: count.value,
       category: category.value,
     };
-    dataProduct.push(newProduct);
+
+    if (newProduct.count > 1) {
+      for (let i = 0; i < newProduct.count; i++) {
+        dataProduct.push(newProduct);
+      }
+    } else {
+      dataProduct.push(newProduct);
+    }
+
     localStorage.setItem("product", JSON.stringify(dataProduct));
     clearInput();
     showData();
@@ -68,7 +74,6 @@ clear.onclick = function () {
 function clearInput() {
   title.style.border = "none";
   price.style.border = "none";
-  count.style.border = "none";
   category.style.border = "none";
 
   title.value = "";
@@ -104,7 +109,7 @@ function showData() {
 
   if (dataProduct.length > 0) {
     btnDeleteAll.innerHTML = `
-    <button onclick="deleteAll()">Delete All</button>
+    <button onclick="deleteAll()">Delete All (${dataProduct.length})</button>
   `;
   } else {
     btnDeleteAll.innerHTML = "";
