@@ -9,6 +9,7 @@ let count = document.getElementById("count");
 let category = document.getElementById("category");
 let submit = document.getElementById("submit");
 let clear = document.getElementById("clear");
+let search = document.getElementById("search");
 let btnDeleteAll = document.getElementById("delete-all");
 
 let mood = "create";
@@ -47,14 +48,14 @@ submit.onclick = function () {
     category.style.border = "none";
 
     let newProduct = {
-      title: title.value,
+      title: title.value.toLowerCase(),
       price: price.value,
       taxes: taxes.value,
       ads: ads.value,
       discount: discount.value,
       total: total.innerHTML,
       count: count.value,
-      category: category.value,
+      category: category.value.toLowerCase(),
     };
 
     if (mood === "create") {
@@ -94,6 +95,67 @@ function clearInput() {
   category.value = "";
 }
 
+// search data
+let searchMood = "Title";
+
+function getSearchMood(id) {
+  if (id == "search-title") {
+    searchMood = "Title";
+  } else {
+    searchMood = "Category";
+  }
+
+  search.placeholder = `Search By ${searchMood}...`;
+  search.focus();
+  search.value = "";
+  showData();
+}
+
+function searchData(value) {
+  let table = "";
+  for (let i = 0; i < dataProduct.length; i++) {
+    if (searchMood == "Title") {
+      if (dataProduct[i].title.includes(value.toLowerCase())) {
+        table += `
+          <tr>
+           <td>${i + 1}</td>
+            <td>${dataProduct[i].title}</td>
+            <td>${dataProduct[i].price}</td>
+            <td>${dataProduct[i].taxes}</td>
+            <td>${dataProduct[i].ads}</td>
+            <td>${dataProduct[i].discount}</td>
+            <td>${dataProduct[i].total}</td>
+            <td>${dataProduct[i].count}</td>
+            <td>${dataProduct[i].category}</td>
+            <td><button onclick="updateData(${i})" class="update" id="update">Update</button></td>
+            <td><button onclick="deleteData(${i})" class="delete" id="delete">Delete</button></td>
+          </tr>
+          `;
+      }
+    } else {
+      if (dataProduct[i].category.includes(value.toLowerCase())) {
+        table += `
+          <tr>
+           <td>${i + 1}</td>
+            <td>${dataProduct[i].title}</td>
+            <td>${dataProduct[i].price}</td>
+            <td>${dataProduct[i].taxes}</td>
+            <td>${dataProduct[i].ads}</td>
+            <td>${dataProduct[i].discount}</td>
+            <td>${dataProduct[i].total}</td>
+            <td>${dataProduct[i].count}</td>
+            <td>${dataProduct[i].category}</td>
+            <td><button onclick="updateData(${i})" class="update" id="update">Update</button></td>
+            <td><button onclick="deleteData(${i})" class="delete" id="delete">Delete</button></td>
+          </tr>
+          `;
+      }
+    }
+  }
+
+  document.getElementById("tbody").innerHTML = table;
+}
+
 // get read data
 function showData() {
   getTotal();
@@ -116,6 +178,7 @@ function showData() {
       </tr>
       `;
   }
+
   document.getElementById("tbody").innerHTML = table;
 
   if (dataProduct.length > 0) {

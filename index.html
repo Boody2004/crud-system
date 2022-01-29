@@ -57,11 +57,20 @@
 
       <div class="outputs">
         <div class="search-block">
-          <input type="text" id="search" placeholder="Search..." />
+          <input
+            onkeyup="searchData(this.value)"
+            type="text"
+            id="search"
+            placeholder="Search By Title..."
+          />
 
           <div class="btn-search">
-            <button id="search-title">Search By Title</button>
-            <button id="search-category">Search By Category</button>
+            <button onclick="getSearchMood (this.id)" id="search-title">
+              Search By Title
+            </button>
+            <button onclick="getSearchMood (this.id)" id="search-category">
+              Search By Category
+            </button>
           </div>
         </div>
 
