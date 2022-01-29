@@ -36,41 +36,40 @@ if (localStorage.product != null) {
 }
 
 submit.onclick = function () {
-  if (title && price && count && category.value == "") {
-    title.style.border = "1px solid var(--third-color)";
-    price.style.border = "1px solid var(--third-color)";
-    count.style.border = "1px solid var(--third-color)";
-    category.style.border = "1px solid var(--third-color)";
-  } else {
-    title.style.border = "none";
-    price.style.border = "none";
-    count.style.border = "none";
-    category.style.border = "none";
+  let newProduct = {
+    title: title.value.toLowerCase(),
+    price: price.value,
+    taxes: taxes.value,
+    ads: ads.value,
+    discount: discount.value,
+    total: total.innerHTML,
+    count: count.value,
+    category: category.value.toLowerCase(),
+  };
 
-    let newProduct = {
-      title: title.value.toLowerCase(),
-      price: price.value,
-      taxes: taxes.value,
-      ads: ads.value,
-      discount: discount.value,
-      total: total.innerHTML,
-      count: count.value,
-      category: category.value.toLowerCase(),
-    };
-
+  if (
+    title.value != "" &&
+    price.value != "" &&
+    count.value != "" &&
+    category.value != ""
+  ) {
     if (mood === "create") {
       dataProduct.push(newProduct);
     } else {
       dataProduct[tmp] = newProduct;
 
       mood = "create";
-      count.style.display = "block";
       submit.innerHTML = "Create";
     }
 
     localStorage.setItem("product", JSON.stringify(dataProduct));
     clearInput();
     showData();
+  } else {
+    title.style.border = "1px solid var(--third-color)";
+    price.style.border = "1px solid var(--third-color)";
+    count.style.border = "1px solid var(--third-color)";
+    category.style.border = "1px solid var(--third-color)";
   }
 };
 
